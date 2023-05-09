@@ -14,7 +14,6 @@ export const FormWrapper = styled.div`
 `;
 
 export const FormLabel = styled.label`
-  /* margin-right: 15px; */
   font-size: 24px;
 `;
 
@@ -35,7 +34,7 @@ export const FormButton = styled.button`
   border-radius: 5px;
   background-color: #9b94ce;
 
-  :hover{
+  :hover {
     color: green;
   }
 `;

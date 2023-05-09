@@ -1,9 +1,16 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormWrapper, FormLabel } from './ContactForm.styled';
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/contactsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik, ErrorMessage } from 'formik';
+import {
+  Form,
+  FormWrapper,
+  FormLabel,
+  FormInput,
+  FormButton,
+} from './ContactForm.styled';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
-export default ContactForm;
 
 const initialValues = {
   id: '',
@@ -20,14 +27,27 @@ const shema = yup.object().shape({
   number: yup.number().min(4).required(),
 });
 
-function ContactForm({ onSubmit }) {
+export default function ContactForm() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
   function handleSubmit(values, { resetForm }) {
+    // values.preventDefault();
     const newContact = {
       id: nanoid(),
       name: values.name,
       number: values.number,
     };
-    onSubmit(newContact);
+
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      return alert(`${newContact.name} is already in contacts`);
+    }
+
+    dispatch(addContact(newContact));
     resetForm();
   }
 
@@ -40,21 +60,17 @@ function ContactForm({ onSubmit }) {
       <Form autoComplete="off">
         <FormWrapper>
           <FormLabel htmlFor="name">Name</FormLabel>
-          <Field type="text" name="name" id="name" required />
+          <FormInput type="text" name="name" id="name" required />
           <ErrorMessage name="name" />
         </FormWrapper>
 
         <FormWrapper>
-          <label htmlFor="number">Number</label>
-          <Field type="tel" name="number" id="number" required />
+          <FormLabel htmlFor="number">Number</FormLabel>
+          <FormInput type="tel" name="number" id="number" required />
           <ErrorMessage name="number" />
         </FormWrapper>
-        <button type="submit">Add contact</button>
+        <FormButton type="submit">Add contact</FormButton>
       </Form>
     </Formik>
   );
 }
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};

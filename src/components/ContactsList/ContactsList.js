@@ -25,7 +25,10 @@ export default function ContactsList() {
             <ContactListLi key={id}>
               <ContactListSpan>{name}</ContactListSpan>
               <ContactListSpan>{number}</ContactListSpan>
-              <ContactListButton type="button" onClick={() => dispatch(delContact(id))}>
+              <ContactListButton
+                type="button"
+                onClick={() => dispatch(delContact(id))}
+              >
                 Delete
               </ContactListButton>
             </ContactListLi>

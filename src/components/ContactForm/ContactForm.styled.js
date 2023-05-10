@@ -1,8 +1,9 @@
+import { Form, Field } from 'formik';
 import styled from '@emotion/styled';
 
-export const Form = styled.form`
+export const FormContainer = styled(Form)`
   display: flex;
-  flex-direction: column; */
+  flex-direction: column; 
   align-items: center;
 `;
 
@@ -10,28 +11,28 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: var(--border-margin-padding);
 `;
 
 export const FormLabel = styled.label`
-  font-size: 24px;
+  font-size: var(--font-size-subtitle);
 `;
 
-export const FormInput = styled.input`
-  padding: 5px;
+export const FormInput = styled(Field)`
+  padding: var(--border-margin-padding);
   font-size: 20px;
   font-weight: bold;
   background-color: #cccccc;
-  border-radius: 5px;
+  border-radius: var(--border-margin-padding);
 `;
 
 export const FormButton = styled.button`
-  font-size: 16px;
-  padding: 7px;
-  margin-top: 5px;
+  font-size: var(--font-size-buttons);
+  padding: 5px 15px;
+  margin: 10px 0 15px 0;
   cursor: pointer;
   border: solid 2px #000;
-  border-radius: 5px;
+  border-radius: var(--border-margin-padding);
   background-color: #9b94ce;
 
   :hover {

@@ -1,17 +1,17 @@
+import { getContactFilter, getContacts } from 'redux/selectors';
+import { delContact } from 'redux/contactsSlice';
 import {
   ContactListUl,
   ContactListLi,
   ContactListSpan,
   ContactListButton,
-} from './ContactsList.styled';
-import { delContact } from 'redux/contactsSlice';
-import { getContacts, getContactsFilter } from 'redux/selectors';
-import PropTypes from 'prop-types';
+} from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-export default function ContactsList() {
+
+export default function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const filter = useSelector(getContactsFilter);
+  const filter = useSelector(getContactFilter);
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -25,10 +25,7 @@ export default function ContactsList() {
             <ContactListLi key={id}>
               <ContactListSpan>{name}</ContactListSpan>
               <ContactListSpan>{number}</ContactListSpan>
-              <ContactListButton
-                type="button"
-                onClick={() => dispatch(delContact(id))}
-              >
+              <ContactListButton type="button" onClick={() => dispatch(delContact(id))}>
                 Delete
               </ContactListButton>
             </ContactListLi>
@@ -38,10 +35,3 @@ export default function ContactsList() {
     </>
   );
 }
-
-ContactsList.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
-};
-

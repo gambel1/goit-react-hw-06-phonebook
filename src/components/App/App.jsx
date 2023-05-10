@@ -1,20 +1,20 @@
 import ContactForm from '../ContactForm/ContactForm';
-import ContactsList from '../ContactsList/ContactsList';
+import ContactsList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
-import { AppDiv, AppTitle } from './App.styled';
+import { AppContainer,  AppTitle } from './App.styled';
 
 export default function App() {
   return (
-    <>
-      <AppDiv>
+    <AppContainer>
+      <div>
         <AppTitle>Phonebook</AppTitle>
         <ContactForm />
-      </AppDiv>
-      <AppDiv>
+      </div>
+      <div>
         <AppTitle>Contacts</AppTitle>
         <Filter />
         <ContactsList />
-      </AppDiv>
-    </>
+      </div>
+    </AppContainer>
   );
 }

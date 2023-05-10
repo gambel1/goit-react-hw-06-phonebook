@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { filterReducer } from './filterSlice';
+import { filterReducer } from './filtersSlice';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { persistedContactsReducer } from './contactsSlice';
 

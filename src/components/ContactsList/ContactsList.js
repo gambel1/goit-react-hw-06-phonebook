@@ -44,3 +44,4 @@ ContactsList.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
 };
+

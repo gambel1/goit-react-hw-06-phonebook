@@ -13,7 +13,7 @@ export const contactSlice = createSlice({
   reducers: {
     addContact: {
       reducer: (state, action) => {
-        state.list.push(action.payload);
+        state.contactList.push(action.payload);
       },
 
       prepare({ id, name, number }) {
@@ -28,7 +28,7 @@ export const contactSlice = createSlice({
     },
 
     delContact: (state, action) => {
-      state.list = state.list.filter(contact => contact.id !== action.payload);
+      state.contactList = state.contactList.filter(contact => contact.id !== action.payload);
     },
   },
 });
@@ -44,3 +44,4 @@ export const persistedContactsReducer = persistReducer(
   persistConfig,
   contactReducer
 );
+
